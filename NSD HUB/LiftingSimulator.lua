@@ -9,21 +9,21 @@ OrionLib:MakeNotification({
 	Time = 5
 })
 
-getgenv().Key = "LS" -- the key for the script 
+getgenv().Key = "Dev" -- the key for the script 
 getgenv().Keyinput = "string"
 
 function MakeScriptHub()
 if game.PlaceId == 3652625463 then
     local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-    local Window = OrionLib:MakeWindow({Name = "v1.7.4 Developer Version of Lifting Simulator", HidePremium = false, IntroEnabled = false,IntroText = "Welcome Back NSD", SaveConfig = true, ConfigFolder = "LiftingTest"})
+    local Window = OrionLib:MakeWindow({Name = "Develeper Version of NSD HUB's Lifting Simulator", HidePremium = false, IntroEnabled = false,IntroText = "Welcome Back NSD", SaveConfig = true, ConfigFolder = "LiftingTest"})
                 
     --Values
-    getgenv().autoTool = true
-    getgenv().autoLift = true
-    getgenv().autoSell = true	
-    getgenv().autobuyStage = true	
-    getgenv().autobuyGenetics = true
-    getgenv().autobuyWeights = true
+    getgenv().autoTool = true -- (Active)
+    getgenv().autoLift = true -- (Active)
+    getgenv().autoSell = true -- (Active)
+    getgenv().autobuyStage = true -- (Active)
+    getgenv().autobuyGenetics = true -- (in Work)
+    getgenv().autobuyWeights = true -- (in Work)
     --Functions
                 
     
@@ -41,12 +41,7 @@ if game.PlaceId == 3652625463 then
      end
     end	
         
-    function autobuyStage()
-        while getgenv().autobuyStage == true do
-        -- loadstring(game:HttpGet((''),true))()
-     end
-    end
-        
+     
     function autobuyGenetics()
         while getgenv().autobuyGenetics == true do
        -- loadstring(game:HttpGet((''),true))()
@@ -68,7 +63,7 @@ if game.PlaceId == 3652625463 then
     })
      
     FarmTab:AddToggle({
-        Name = "Auto Tool",
+        Name = "-- Auto Tool (Active)",
         Default = false,
         Callback = function(Value)
             getgenv().autoTool = Value
@@ -95,7 +90,7 @@ if game.PlaceId == 3652625463 then
         
     -- Toggle 
     FarmTab:AddToggle({
-        Name = "Auto Lift",
+        Name = "-- Auto Lift (Active)",
         Default = false,
         Callback = function(Value)
             getgenv().autoLift = Value
@@ -105,7 +100,7 @@ if game.PlaceId == 3652625463 then
         
     -- Toggle
     FarmTab:AddToggle({
-        Name = "Auto Sell",
+        Name = "-- Auto Sell (Active)",
         Default = false,
         Callback = function(Value)
             getgenv().autoSell = Value
@@ -113,19 +108,17 @@ if game.PlaceId == 3652625463 then
         end
     })
     
-    -- Toggle
-    FarmTab:AddToggle({
-        Name = "-- Auto Buy Stage (Working on it)",
-        Default = false,
-        Callback = function(Value)
-            getgenv().autobuyStage = Value
-            autobuyStage()
+    -- Button
+    FarmTab:AddButton({
+        Name = "-- Auto Buy Stage (Active)",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NotSlayerDemon/Script-Auto-Buy-Stage/main/Script.lua"))()
         end
     })
         
     -- Toggle 
     FarmTab:AddToggle({
-        Name = "-- Auto Buy Genetics (Working on it)",
+        Name = "-- Auto Buy Genetics (Inactive)",
         Default = false,
         Callback = function(Value)
             getgenv().autobuyGenetics = Value
@@ -135,7 +128,7 @@ if game.PlaceId == 3652625463 then
     
     -- Toggle 
     FarmTab:AddToggle({
-        Name = "-- Auto Buy Weights (Working on it)",
+        Name = "-- Auto Buy Weights (Inactive)",
         Default = false,
         Callback = function(Value)
             getgenv().autobuyWeights = Value
@@ -151,6 +144,82 @@ if game.PlaceId == 3652625463 then
     })
 
     SetTab:AddButton({
+        Name = "Conceal = true",
+        Callback = function()
+            local args = {
+                [1] = {
+                    [1] = "ChangeSetting",
+                    [2] = "ConcealEnabled",
+                    [3] = true
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        
+        end 
+    })
+    
+    SetTab:AddButton({
+        Name = "Coneceal = false",
+        Callback = function()
+            local args = {
+                [1] = {
+                    [1] = "ChangeSetting",
+                    [2] = "ConcealEnabled",
+                    [3] = false
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        end 
+    })
+    
+    SetTab:AddButton({
+        Name = "Set Size 4Vg",
+        Callback = function()
+            local args = {
+                [1] = {
+                    [1] = "ChangeSetting",
+                    [2] = "MuscleReveal",
+                    [3] = 4.7272727272725146e+63
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        end 
+    })
+    
+    SetTab:AddButton({
+        Name = "Set Size 59Dc -- SpinMode:Activated() == true",
+        Callback = function()
+            local args = {
+                [1] = {
+                    [1] = "ChangeSetting",
+                    [2] = "MuscleReveal",
+                    [3] = 5.9090909090908565e+34
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        end 
+    })
+    
+    SetTab:AddButton({
+        Name = "Set Size 40T",
+        Callback = function()
+            local args = {
+                [1] = {
+                    [1] = "ChangeSetting",
+                    [2] = "MuscleReveal",
+                    [3] = 40000000000000
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        end 
+    })
+    
+    SetTab:AddButton({
         Name = "Set Size 69420",
         Callback = function()
         local args = {
@@ -158,6 +227,19 @@ if game.PlaceId == 3652625463 then
                 [1] = "ChangeSetting",
                 [2] = "MuscleReveal",
                 [3] = 69420
+            }
+        }
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        end
+    })
+    SetTab:AddButton({
+        Name = "Set Size 69",
+        Callback = function()
+        local args = {
+            [1] = {
+                [1] = "ChangeSetting",
+                [2] = "MuscleReveal",
+                [3] = 69
             }
         }
             game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
@@ -235,6 +317,158 @@ if game.PlaceId == 3652625463 then
         end
     })
 
+    local TpLocationTab = Window:MakeTab({
+        Name = "Teleport To",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    TpLocationTab:AddButton({
+        Name = "Boss #1",
+        Callback = function()
+            local player = game.Players.LocalPlayer
+            local TpLocation
+            -- function
+
+            function teleport(loc) -- Nymphoria on v3rmillion.net
+              bLocation = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+              wait()
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = loc
+            end
+
+            teleport(CFrame.new(1337.77783203125, -55.674137115478516, 1889.0390625))
+            wait(0)
+            teleport(TpLocation)
+        end
+    })
+    TpLocationTab:AddButton({
+        Name = "Boss #2",
+        Callback = function()
+            local player = game.Players.LocalPlayer
+            local TpLocation
+            -- function
+
+            function teleport(loc) -- Nymphoria on v3rmillion.net
+              bLocation = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+              wait()
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = loc
+            end
+
+            teleport(CFrame.new(4064.661865234375, -55.66917037963867, 1904.29833984375))
+            wait(0)
+            teleport(TpLocation)
+        end
+    })
+    TpLocationTab:AddButton({
+        Name = "Boss #3",
+        Callback = function()
+            local player = game.Players.LocalPlayer
+            local TpLocation
+            -- function
+
+            function teleport(loc) -- Nymphoria on v3rmillion.net
+              bLocation = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+              wait()
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = loc
+            end
+
+            teleport(CFrame.new(9262.822265625, -55.66917037963867, 1892.105224609375))
+            wait(0)
+            teleport(TpLocation)
+        end
+    })
+    TpLocationTab:AddButton({
+        Name = "Boss #4",
+        Callback = function()
+            local player = game.Players.LocalPlayer
+            local TpLocation
+            -- function
+
+            function teleport(loc) -- Nymphoria on v3rmillion.net
+              bLocation = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+              wait()
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = loc
+            end
+
+            teleport(CFrame.new(12046.7763671875, -55.66917419433594, 1866.70361328125))
+            wait(0)
+            teleport(TpLocation)
+        end
+    })
+    TpLocationTab:AddButton({
+        Name = "Boss #5",
+        Callback = function()
+            local player = game.Players.LocalPlayer
+            local TpLocation
+            -- function
+
+            function teleport(loc) -- Nymphoria on v3rmillion.net
+              bLocation = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+              wait()
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = loc
+            end
+
+            teleport(CFrame.new(14636.7900390625, -55.66917037963867, 1883.5072021484375))
+            wait(0)
+            teleport(TpLocation)
+        end
+    })
+    TpLocationTab:AddButton({
+        Name = "Boss #6",
+        Callback = function()
+            local player = game.Players.LocalPlayer
+            local TpLocation
+            -- function
+
+            function teleport(loc) -- Nymphoria on v3rmillion.net
+              bLocation = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+              wait()
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = loc
+            end
+
+            teleport(CFrame.new(17153.341796875, -55.66917419433594, 1907.96044921875))
+            wait(0)
+            teleport(TpLocation)
+        end
+    })
+    TpLocationTab:AddButton({
+        Name = "Boss #7",
+        Callback = function()
+            local player = game.Players.LocalPlayer
+            local TpLocation
+            -- function
+
+            function teleport(loc) -- Nymphoria on v3rmillion.net
+              bLocation = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+              wait()
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = loc
+            end
+
+            teleport(CFrame.new(19706.34765625, -55.66434097290039, 1933.410888671875))
+            wait(0)
+            teleport(TpLocation)
+        end
+    })
+    TpLocationTab:AddButton({
+        Name = "Boss #8",
+        Callback = function()
+            local player = game.Players.LocalPlayer
+            local TpLocation
+            -- function
+
+            function teleport(loc) -- Nymphoria on v3rmillion.net
+              bLocation = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+              wait()
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = loc
+            end
+
+            teleport(CFrame.new(22267.2890625, -55.57325744628906, 1918.364990234375))
+            wait(0)
+            teleport(TpLocation)
+        end
+    })
+
+
 
 
     local ScriptsTab = Window:MakeTab({
@@ -242,7 +476,7 @@ if game.PlaceId == 3652625463 then
         Icon = "rbxassetid://4483345998",
         PremiumOnly = false
     })
-        
+    
     ScriptsTab:AddButton({
         Name = "Anti AFK",
         Callback = function()
@@ -269,32 +503,32 @@ if game.PlaceId == 3652625463 then
         Callback = function()
              Rox_Hub = true
              loadstring(game:HttpGet("https://gist.githubusercontent.com/HaxxV1/d7cfdb5090e819a84a8db22fb113f39d/raw"))()
-         end
+        end
     })
        NSDTab:AddButton({
         Name = "Dark Dex v3",
         Callback = function()
              loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
-         end    
+        end    
     })
        NSDTab:AddButton({
         Name = "Turtle Spy",
         Callback = function()
              loadstring(game:HttpGet("https://pastebin.com/raw/BDhSQqUU", true))()
-         end    
+        end    
     })
        NSDTab:AddButton({
         Name = "infinite Yield",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-         end    
+        end    
     })
     
     NSDTab:AddButton({
          Name = "SimpleSpy",
          Callback = function()
              loadstring(game:HttpGet("https://github.com/exxtremestuffs/SimpleSpySource/raw/master/SimpleSpy.lua"))()
-         end    
+        end    
     })
 
 
